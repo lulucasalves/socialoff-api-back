@@ -1,0 +1,21 @@
+const facebookService = require('../services/facebookService')
+const instagramService = require('../services/instagramService')
+const linkedinPostService = require('../services/linkedinPostService')
+const linkedinVideoService = require('../services/linkedinVideoService')
+const tiktokService = require('../services/tiktokService')
+const twitterService = require('../services/twitterService')
+const express = require('express')
+const youtubeVideoService = require('../services/youtubeVideoService')
+const youtubeThumbService = require('../services/youtubeThumbService')
+const routes = express.Router()
+
+routes.post('/linkedin/post', linkedinPostService)
+routes.post('/linkedin/video', linkedinVideoService)
+routes.post('/twitter', twitterService)
+routes.post('/facebook', facebookService)
+routes.post('/instagram', instagramService)
+routes.post('/tiktok', tiktokService)
+routes.post('/youtube/video', youtubeVideoService)
+routes.post('/youtube/thumbnail', youtubeThumbService)
+
+module.exports = routes
