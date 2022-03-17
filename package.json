@@ -4,8 +4,8 @@
   "main": "src/server.js",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon /src/server.js",
-    "test:unit": "jest --watchAll --testPathPattern=src/tests",
+    "start": "node ./src/server.js",
+    "test:unit": "jest --watchAll --testPathPattern=src/api/v1.0.0/tests",
     "test:integration": "jest --watchAll --testPathPattern=src/tests"
   },
   "dependencies": {

@@ -1,4 +1,4 @@
-const app = require('./api/v1/infra/app')
+const app = require('./api/v1.0.0/infra/app')
 require('dotenv/config')
 
 const port = process.env.PORT || 5000

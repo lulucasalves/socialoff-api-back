@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer')
 
 async function linkedinPostModule(url) {
-  const browser = await puppeteer.launch()
+  const browser = await puppeteer.launch({ headless: false })
   const page = await browser.newPage()
 
   if (url.includes('https://media-exp1')) {

@@ -1,13 +1,18 @@
 const puppeteer = require('puppeteer')
 
 async function facebookModule(url) {
-  const browser = await puppeteer.launch()
+  const browser = await puppeteer.launch({ headless: false })
   const page = await browser.newPage()
 
-  await page.goto(`https://pt.savefrom.net/86/#url=${url}`)
+  try {
+    await page.goto(`https://pt.savefrom.net/86`)
+  } catch {
+    await page.goto(`https://pt.savefrom.net/86`)
+  }
 
-  await page.waitForTimeout(5000)
+  await page.waitForSelector('#sf_url')
 
+  await page.type('#sf_url', url)
   await page.click('#sf_submit')
 
   await page.waitForSelector('.link-download')
