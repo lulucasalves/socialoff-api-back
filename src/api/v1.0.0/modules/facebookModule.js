@@ -2,7 +2,9 @@ const puppeteer = require('puppeteer')
 require('dotenv/config')
 
 async function facebookModule(url) {
-  const browser = await puppeteer.launch()
+  const browser = await puppeteer.launch({
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
+  })
   const page = await browser.newPage()
 
   if (!url.includes('fb') && !url.includes('facebook')) {

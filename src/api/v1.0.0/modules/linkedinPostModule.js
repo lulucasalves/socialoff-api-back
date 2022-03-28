@@ -5,7 +5,9 @@ async function linkedinPostModule(url) {
     throw Error('invalid url')
   }
 
-  const browser = await puppeteer.launch()
+  const browser = await puppeteer.launch({
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
+  })
   const page = await browser.newPage()
 
   if (url.includes('https://media-exp1')) {
