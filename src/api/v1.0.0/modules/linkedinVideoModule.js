@@ -17,9 +17,9 @@ async function linkedinVideoModule(url) {
   if (!url.includes('https://www.')) {
     const [, urlPersonal] = url.split('linkedin.com')
     const newUrl = `https://www.linkedin.com${urlPersonal}`
-    await page.goto(newUrl, { waitUntil: 'load', timeout: 10000 })
+    await page.goto(newUrl)
   } else {
-    await page.goto(url, { waitUntil: 'load', timeout: 10000 })
+    await page.goto(url)
   }
 
   try {

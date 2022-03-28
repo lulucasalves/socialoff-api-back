@@ -12,9 +12,9 @@ async function instagramModule(url) {
   const page = await browser.newPage()
 
   try {
-    await page.goto(process.env.URL, { waitUntil: 'load', timeout: 10000 })
+    await page.goto(process.env.URL)
   } catch {
-    await page.goto(process.env.URL, { waitUntil: 'load', timeout: 10000 })
+    await page.goto(process.env.URL)
   }
 
   await page.waitForSelector('#sf_url')
