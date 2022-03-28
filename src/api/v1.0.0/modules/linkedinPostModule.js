@@ -15,9 +15,9 @@ async function linkedinPostModule(url) {
   if (!url.includes('https://www.')) {
     const [, urlPersonal] = url.split('linkedin.com')
     const newUrl = `https://www.linkedin.com${urlPersonal}`
-    await page.goto(newUrl)
+    await page.goto(newUrl, { waitUntil: 'load', timeout: 10000 })
   } else {
-    await page.goto(url)
+    await page.goto(url, { waitUntil: 'load', timeout: 10000 })
   }
 
   try {
