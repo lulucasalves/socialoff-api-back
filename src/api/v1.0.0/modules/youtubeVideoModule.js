@@ -2,8 +2,12 @@ const puppeteer = require('puppeteer')
 require('dotenv/config')
 
 async function youtubeVideoModule(url) {
-  const browser = await puppeteer.launch({ headless: false })
+  const browser = await puppeteer.launch()
   const page = await browser.newPage()
+
+  if (!url.includes('youtube')) {
+    throw Error('invalid url')
+  }
 
   try {
     await page.goto(process.env.URL)

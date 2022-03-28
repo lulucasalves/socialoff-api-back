@@ -1,10 +1,13 @@
 const puppeteer = require('puppeteer')
 require('dotenv/config')
 
-
 async function facebookModule(url) {
-  const browser = await puppeteer.launch({ headless: false })
+  const browser = await puppeteer.launch()
   const page = await browser.newPage()
+
+  if (!url.includes('fb') && !url.includes('facebook')) {
+    throw Error('invalid url')
+  }
 
   try {
     await page.goto(process.env.URL)

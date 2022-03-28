@@ -1,7 +1,11 @@
 const puppeteer = require('puppeteer')
 
 async function linkedinVideoModule(url) {
-  const browser = await puppeteer.launch({ headless: false })
+  if (!url.includes('linkedin') && !url.includes('dms')) {
+    throw Error('invalid url')
+  }
+
+  const browser = await puppeteer.launch()
   const page = await browser.newPage()
 
   if (url.includes('https://dms.licdn')) {

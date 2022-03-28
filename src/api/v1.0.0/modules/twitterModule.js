@@ -2,7 +2,11 @@ const puppeteer = require('puppeteer')
 require('dotenv/config')
 
 async function twitterModule(url) {
-  const browser = await puppeteer.launch({ headless: false })
+  if (!url.includes('twitter')) {
+    throw Error('invalid url')
+  }
+
+  const browser = await puppeteer.launch()
   const page = await browser.newPage()
 
   try {

@@ -2,7 +2,11 @@ const puppeteer = require('puppeteer')
 require('dotenv/config')
 
 async function instagramModule(url) {
-  const browser = await puppeteer.launch({ headless: false })
+  if (!url.includes('instagram')) {
+    throw Error('invalid url')
+  }
+
+  const browser = await puppeteer.launch()
   const page = await browser.newPage()
 
   try {

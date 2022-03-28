@@ -5,8 +5,8 @@
   "license": "MIT",
   "scripts": {
     "start": "node ./src/server.js",
-    "test:unit": "jest --watchAll --testPathPattern=src/api/v1.0.0/tests",
-    "test:integration": "jest --watchAll --testPathPattern=src/tests"
+    "dev": "nodemon ./src/server.js",
+    "test": "jest --watchAll --testPathPattern=src/api/v1.0.0/tests"
   },
   "dependencies": {
     "cors": "^2.8.5",
