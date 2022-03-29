@@ -44,18 +44,14 @@ async function instagramModule(url) {
     throw Error('invalid url')
   }
 
-  console.log('1')
-
   const timeout = 30000
 
   const browser = await puppeteer.launch({
     headless: true,
     args: myargs
   })
-  console.log('2')
 
   const page = await browser.newPage()
-  console.log('3')
 
   await page.setUserAgent(
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
@@ -72,8 +68,13 @@ async function instagramModule(url) {
   const link = await page.$$eval('.download-items .abutton', (scripts) => {
     return scripts.map((x) => x.getAttribute('href'))
   })
-
   await browser.close()
+
+  if (link[0][0] === '/') {
+    const newLink = `https://snapinsta.app/${link}`
+
+    return newLink
+  }
 
   return link
 }
