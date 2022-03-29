@@ -43,7 +43,7 @@ async function youtubeVideoModule(url) {
   const timeout = 30000
 
   const browser = await puppeteer.launch({
-    headless: false,
+    headless: true,
     args: myargs,
     timeout
   })
