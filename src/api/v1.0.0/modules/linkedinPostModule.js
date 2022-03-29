@@ -48,7 +48,6 @@ async function linkedinPostModule(url) {
   const browser = await puppeteer.launch({
     headless: true,
     args: myargs,
-    userDataDir: './myUserDataDir',
     timeout
   })
 

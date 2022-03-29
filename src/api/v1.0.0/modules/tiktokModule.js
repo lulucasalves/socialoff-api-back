@@ -48,7 +48,6 @@ async function tiktokModule(url) {
   const browser = await puppeteer.launch({
     headless: true,
     args: myargs,
-    userDataDir: './myUserDataDir',
     timeout
   })
 

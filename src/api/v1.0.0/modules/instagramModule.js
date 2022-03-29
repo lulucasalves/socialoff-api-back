@@ -44,34 +44,43 @@ async function instagramModule(url) {
     throw Error('invalid url')
   }
 
+  console.log('1')
+
   const timeout = 30000
 
   const browser = await puppeteer.launch({
     headless: true,
-    args: myargs,
-    userDataDir: './myUserDataDir',
-    timeout
+    args: myargs
   })
+  console.log('2')
 
   const page = await browser.newPage()
+  console.log('3')
+
   await page.setUserAgent(
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
   )
+  console.log('4')
+
   // await page.goto(process.env.URL, { timeout })
 
   // await page.waitForSelector('#sf_url')
 
   // await page.type('#sf_url', url)
   // await page.click('#sf_submit')
-  await page.goto(process.env.URL + url, { timeout })
+  await page.goto(process.env.URL + url)
+  console.log('5')
 
   await page.waitForSelector('.link-download')
+  console.log('6')
 
   const link = await page.$$eval('.def-btn-box .link-download', (scripts) => {
     return scripts.map((x) => x.getAttribute('href'))
   })
+  console.log('7')
 
   await browser.close()
+  console.log('8')
 
   return link
 }
