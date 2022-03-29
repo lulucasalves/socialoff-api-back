@@ -58,22 +58,38 @@ async function facebookModule(url) {
     throw Error('invalid url')
   }
 
-  await page.goto('https://fdown.net/', { timeout })
+  if (url.includes('/photo') || url.includes('/post')) {
+    await page.goto(url, { timeout })
 
-  await page.waitForSelector('form .input-group input')
+    await page.waitForSelector('div div div div div div div div div div img')
 
-  await page.type('form .input-group input', url)
-  await page.click('form .input-group-btn button')
+    const link = await page.$$eval(
+      'div div div div div div div div div div img',
+      (scripts) => {
+        return scripts.map((x) => x.getAttribute('src'))
+      }
+    )
+    await browser.close()
 
-  await page.waitForSelector('#sdlink')
+    return link
+  } else {
+    await page.goto('https://fdown.net/', { timeout })
 
-  const link = await page.$$eval('#sdlink', (scripts) => {
-    return scripts.map((x) => x.getAttribute('href'))
-  })
+    await page.waitForSelector('form .input-group input')
 
-  await browser.close()
+    await page.type('form .input-group input', url)
+    await page.click('form .input-group-btn button')
 
-  return link
+    await page.waitForSelector('#sdlink')
+
+    const link = await page.$$eval('#sdlink', (x) => {
+      return x.getAttribute('href')
+    })
+
+    await browser.close()
+
+    return link
+  }
 }
 
 module.exports = facebookModule
