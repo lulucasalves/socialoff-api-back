@@ -37,7 +37,8 @@ const myargs = [
   '--no-zygote',
   '--password-store=basic',
   '--use-gl=swiftshader',
-  '--use-mock-keychain'
+  '--use-mock-keychain',
+  ...chromium.args
 ]
 
 async function twitterModule(url) {
@@ -50,7 +51,10 @@ async function twitterModule(url) {
     headless: true,
     args: myargs,
     userDataDir: './myUserDataDir',
-    timeout
+    timeout,
+    defaultViewport: chromium.defaultViewport,
+    ignoreHTTPSErrors: true,
+    executablePath: await chromium.executablePath
   })
 
   const page = await browser.newPage()

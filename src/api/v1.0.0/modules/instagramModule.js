@@ -2,7 +2,6 @@ const puppeteer = require('puppeteer')
 require('dotenv/config')
 const chromium = require('chrome-aws-lambda')
 
-
 const myargs = [
   '--autoplay-policy=user-gesture-required',
   '--disable-background-networking',
@@ -38,7 +37,8 @@ const myargs = [
   '--no-zygote',
   '--password-store=basic',
   '--use-gl=swiftshader',
-  '--use-mock-keychain'
+  '--use-mock-keychain',
+  ...chromium.args
 ]
 
 async function instagramModule(url) {
@@ -52,7 +52,10 @@ async function instagramModule(url) {
     headless: true,
     args: myargs,
     userDataDir: './myUserDataDir',
-    timeout
+    timeout,
+    defaultViewport: chromium.defaultViewport,
+    ignoreHTTPSErrors: true,
+    executablePath: await chromium.executablePath
   })
 
   const page = await browser.newPage()
