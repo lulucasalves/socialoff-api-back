@@ -43,7 +43,7 @@ async function facebookModule(url) {
   const timeout = 30000
 
   const browser = await puppeteer.launch({
-    headless: true,
+    headless: false,
     args: myargs,
     timeout
   })
@@ -58,38 +58,24 @@ async function facebookModule(url) {
     throw Error('invalid url')
   }
 
-  if (url.includes('/photo') || url.includes('/post')) {
-    await page.goto(url, { timeout })
+  await page.goto('https://x2download.com/en/download-video-facebook', {
+    timeout
+  })
 
-    await page.waitForSelector('div div div div div div div div div div img')
+  await page.waitForSelector('#s_input')
 
-    const link = await page.$$eval(
-      'div div div div div div div div div div img',
-      (scripts) => {
-        return scripts.map((x) => x.getAttribute('src'))
-      }
-    )
-    await browser.close()
+  await page.type('#s_input', url)
+  await page.click('#search-form button')
 
-    return link
-  } else {
-    await page.goto('https://fdown.net/', { timeout })
+  await page.waitForSelector('#asuccess')
 
-    await page.waitForSelector('form .input-group input')
+  const link = await page.$eval('#asuccess', (x) => {
+    return x.getAttribute('href')
+  })
 
-    await page.type('form .input-group input', url)
-    await page.click('form .input-group-btn button')
+  await browser.close()
 
-    await page.waitForSelector('#sdlink')
-
-    const link = await page.$$eval('#sdlink', (x) => {
-      return x.getAttribute('href')
-    })
-
-    await browser.close()
-
-    return link
-  }
+  return link
 }
 
 module.exports = facebookModule
