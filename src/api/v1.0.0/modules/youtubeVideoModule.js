@@ -11,11 +11,7 @@ async function youtubeVideoModule(url) {
     throw Error('invalid url')
   }
 
-  try {
-    await page.goto(process.env.URL, { waitUntil: 'load', timeout: 10000 })
-  } catch {
-    await page.goto(process.env.URL, { waitUntil: 'load', timeout: 10000 })
-  }
+  await page.goto(process.env.URL)
 
   await page.waitForSelector('#sf_url')
 
