@@ -58,7 +58,7 @@ async function youtubeVideoModule(url) {
     throw Error('invalid url')
   }
 
-  await page.goto(process.env.URL, { timeout })
+  await page.goto('https://pt.savefrom.net/86', { timeout })
 
   await page.waitForSelector('#sf_url')
 
