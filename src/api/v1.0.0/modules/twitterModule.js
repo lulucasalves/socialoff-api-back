@@ -56,20 +56,18 @@ async function twitterModule(url) {
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
   )
 
-  // await page.goto(process.env.URL, { timeout })
+  await page.goto('https://twittervideodownloader.com/', { timeout })
 
-  // await page.waitForSelector('#sf_url')
+  await page.waitForSelector('.input-group .input-group-field')
 
-  // await page.type('#sf_url', url)
+  await page.type('.input-group .input-group-field', url)
 
-  // await page.click('#sf_submit')
+  await page.click('.input-group-button')
 
-  await page.goto(process.env.URL + url, { timeout })
+  await page.waitForSelector('.row .columns .row .columns a')
 
-  await page.waitForSelector('.link-download')
-
-  const link = await page.$$eval('.def-btn-box .link-download', (scripts) => {
-    return scripts.map((x) => x.getAttribute('href'))
+  const link = await page.$eval('.row .columns .row .columns a', (x) => {
+    return x.getAttribute('href')
   })
 
   await browser.close()

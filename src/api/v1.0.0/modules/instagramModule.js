@@ -60,27 +60,20 @@ async function instagramModule(url) {
   await page.setUserAgent(
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
   )
-  console.log('4')
 
-  // await page.goto(process.env.URL, { timeout })
+  await page.goto('https://snapinsta.app/', { timeout })
+  await page.waitForSelector('#url')
 
-  // await page.waitForSelector('#sf_url')
+  await page.type('#url', url)
+  await page.click('#send')
 
-  // await page.type('#sf_url', url)
-  // await page.click('#sf_submit')
-  await page.goto(process.env.URL + url)
-  console.log('5')
+  await page.waitForSelector('.download-items .abutton')
 
-  await page.waitForSelector('.link-download')
-  console.log('6')
-
-  const link = await page.$$eval('.def-btn-box .link-download', (scripts) => {
+  const link = await page.$$eval('.download-items .abutton', (scripts) => {
     return scripts.map((x) => x.getAttribute('href'))
   })
-  console.log('7')
 
   await browser.close()
-  console.log('8')
 
   return link
 }

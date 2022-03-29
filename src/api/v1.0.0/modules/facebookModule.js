@@ -58,18 +58,16 @@ async function facebookModule(url) {
     throw Error('invalid url')
   }
 
-  // await page.goto(process.env.URL, { timeout })
+  await page.goto('https://fdown.net/', { timeout })
 
-  // await page.waitForSelector('#sf_url')
+  await page.waitForSelector('form .input-group input')
 
-  // await page.type('#sf_url', url)
-  // await page.click('#sf_submit')
+  await page.type('form .input-group input', url)
+  await page.click('form .input-group-btn button')
 
-  await page.goto(process.env.URL + url, { timeout })
+  await page.waitForSelector('#sdlink')
 
-  await page.waitForSelector('.link-download')
-
-  const link = await page.$$eval('.def-btn-box .link-download', (scripts) => {
+  const link = await page.$$eval('#sdlink', (scripts) => {
     return scripts.map((x) => x.getAttribute('href'))
   })
 

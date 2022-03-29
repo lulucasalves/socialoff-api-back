@@ -49,7 +49,7 @@ async function youtubeVideoModule(url) {
   })
 
   const page = await browser.newPage()
-  
+
   await page.setUserAgent(
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
   )
@@ -58,20 +58,19 @@ async function youtubeVideoModule(url) {
     throw Error('invalid url')
   }
 
-  await page.goto(process.env.URL + url, { timeout })
+  await page.goto('https://www.y2meta.com/youtube/A_Y0qdWVPgg', { timeout })
 
-  // await page.waitForSelector('#sf_url')
+  await page.waitForSelector('#txt-url')
 
-  // await page.type('#sf_url', url)
-  // await page.click('#sf_submit')
+  await page.type('#txt-url', url)
+  
+  await page.waitForSelector('.txt-center .btn-success')
 
-  await page.waitForSelector('.drop-down-box')
+  await page.click('.txt-center .btn-success')
 
-  await page.click('.drop-down-box')
+  await page.waitForSelector('#process-result a')
 
-  // await page.waitForSelector('.link-group .link-download')
-
-  const link = await page.$eval('.link-group .link-download', (x) =>
+  const link = await page.$eval('#process-result a', (x) =>
     x.getAttribute('href')
   )
 

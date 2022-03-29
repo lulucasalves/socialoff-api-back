@@ -55,22 +55,16 @@ async function tiktokModule(url) {
   await page.setUserAgent(
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
   )
-  // await page.goto(process.env.URL, { timeout })
+  await page.goto('https://snaptik.app/en', { timeout })
 
-  // await page.waitForSelector('#sf_url')
+  await page.waitForSelector('.inputurl-btn__dlbox')
 
-  // await page.type('#sf_url', url)
-  // await page.click('#sf_submit')
+  await page.type('.inputurl-btn__dlbox input', url)
+  await page.click('#submiturl')
 
-  await page.goto(process.env.URL + url, { timeout })
+  await page.waitForSelector('.abuttons .is-success')
 
-  await page.waitForSelector('.drop-down-box')
-
-  await page.click('.drop-down-box')
-
-  // await page.waitForSelector('.link-group .link-download')
-
-  const link = await page.$eval('.link-group .link-download', (x) =>
+  const link = await page.$eval('.abuttons .is-success', (x) =>
     x.getAttribute('href')
   )
 
