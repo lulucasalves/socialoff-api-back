@@ -43,7 +43,7 @@ async function youtubeVideoModule(url) {
   const timeout = 30000
 
   const browser = await puppeteer.launch({
-    headless: true,
+    headless: false,
     args: myargs,
     timeout
   })
@@ -58,23 +58,27 @@ async function youtubeVideoModule(url) {
     throw Error('invalid url')
   }
 
-  const [, hashVideo] = url.split('?v=')
+  await page.goto(`https://yt1s.io/en20`, {
+    timeout
+  })
 
-  await page.goto(`https://www.y2meta.com/youtube/${hashVideo}`, { timeout })
+  await page.waitForSelector('#s_input')
 
-  // await page.waitForSelector('#txt-url')
+  await page.type('#s_input', url)
 
-  // await page.type('#txt-url', url)
+  await page.click('.btn-red')
 
-  await page.waitForSelector('.txt-center .btn-success')
+  await page.waitForSelector('#btn-action')
 
-  await page.click('.txt-center .btn-success')
+  await page.click('#btn-action')
 
-  await page.waitForSelector('#process-result a')
+  await page.waitForSelector('#cnext')
 
-  const link = await page.$eval('#process-result a', (x) =>
-    x.getAttribute('href')
-  )
+  let link = await page.$eval('#asuccess', (x) => x.getAttribute('href'))
+
+  while (link == '#') {
+    link = await page.$eval('#asuccess', (x) => x.getAttribute('href'))
+  }
 
   await browser.close()
 
