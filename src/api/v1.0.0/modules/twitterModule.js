@@ -1,6 +1,5 @@
 const puppeteer = require('puppeteer')
 require('dotenv/config')
-const chromium = require('chrome-aws-lambda')
 
 const myargs = [
   '--autoplay-policy=user-gesture-required',
@@ -37,8 +36,7 @@ const myargs = [
   '--no-zygote',
   '--password-store=basic',
   '--use-gl=swiftshader',
-  '--use-mock-keychain',
-  ...chromium.args
+  '--use-mock-keychain'
 ]
 
 async function twitterModule(url) {
@@ -47,14 +45,11 @@ async function twitterModule(url) {
   }
   const timeout = 30000
 
-  const browser = await chromium.puppeteer.launch({
+  const browser = await puppeteer.launch({
     headless: true,
     args: myargs,
     userDataDir: './myUserDataDir',
-    timeout,
-    defaultViewport: chromium.defaultViewport,
-    ignoreHTTPSErrors: true,
-    executablePath: await chromium.executablePath
+    timeout
   })
 
   const page = await browser.newPage()
