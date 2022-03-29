@@ -1,5 +1,6 @@
 const puppeteer = require('puppeteer')
 require('dotenv/config')
+const chromium = require('chrome-aws-lambda')
 
 const myargs = [
   '--autoplay-policy=user-gesture-required',
@@ -45,7 +46,7 @@ async function tiktokModule(url) {
   }
   const timeout = 30000
 
-  const browser = await puppeteer.launch({
+  const browser = await chromium.puppeteer.launch({
     headless: true,
     args: myargs,
     userDataDir: './myUserDataDir',
@@ -56,7 +57,7 @@ async function tiktokModule(url) {
   await page.setUserAgent(
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
   )
-  await page.goto('https://pt.savefrom.net/86', { timeout })
+  await page.goto(process.env.URL, { timeout })
 
   await page.waitForSelector('#sf_url')
 
