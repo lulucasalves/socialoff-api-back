@@ -59,12 +59,14 @@ async function facebookModule(url) {
     throw Error('invalid url')
   }
 
-  await page.goto(process.env.URL, { timeout })
+  // await page.goto(process.env.URL, { timeout })
 
-  await page.waitForSelector('#sf_url')
+  // await page.waitForSelector('#sf_url')
 
-  await page.type('#sf_url', url)
-  await page.click('#sf_submit')
+  // await page.type('#sf_url', url)
+  // await page.click('#sf_submit')
+
+  await page.goto(process.env.URL + url, { timeout })
 
   await page.waitForSelector('.link-download')
 

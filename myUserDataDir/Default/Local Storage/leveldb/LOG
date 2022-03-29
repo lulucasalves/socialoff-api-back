@@ -1,3 +1,2 @@
-2022/03/29-00:59:53.299 8da04 Reusing MANIFEST /home/lucas/Documentos/projects/socialoff-api-back/myUserDataDir/Default/Local Storage/leveldb/MANIFEST-000001
-2022/03/29-00:59:53.299 8da04 Recovering log #10
-2022/03/29-00:59:53.300 8da04 Reusing old log /home/lucas/Documentos/projects/socialoff-api-back/myUserDataDir/Default/Local Storage/leveldb/000010.log 
+2022/03/29-01:56:58.350 94060 Creating DB /home/lucas/Documentos/projects/socialoff-api-back/myUserDataDir/Default/Local Storage/leveldb since it was missing.
+2022/03/29-01:56:59.475 94060 Reusing MANIFEST /home/lucas/Documentos/projects/socialoff-api-back/myUserDataDir/Default/Local Storage/leveldb/MANIFEST-000001

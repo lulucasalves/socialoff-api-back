@@ -57,13 +57,15 @@ async function twitterModule(url) {
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
   )
 
-  await page.goto(process.env.URL, { timeout })
+  // await page.goto(process.env.URL, { timeout })
 
-  await page.waitForSelector('#sf_url')
+  // await page.waitForSelector('#sf_url')
 
-  await page.type('#sf_url', url)
+  // await page.type('#sf_url', url)
 
-  await page.click('#sf_submit')
+  // await page.click('#sf_submit')
+
+  await page.goto(process.env.URL + url, { timeout })
 
   await page.waitForSelector('.link-download')
 

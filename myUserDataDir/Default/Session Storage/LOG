@@ -1,3 +1,2 @@
-2022/03/29-00:59:54.326 8da04 Reusing MANIFEST /home/lucas/Documentos/projects/socialoff-api-back/myUserDataDir/Default/Session Storage/MANIFEST-000001
-2022/03/29-00:59:54.327 8da04 Recovering log #3
-2022/03/29-00:59:54.327 8da04 Reusing old log /home/lucas/Documentos/projects/socialoff-api-back/myUserDataDir/Default/Session Storage/000003.log 
+2022/03/29-01:57:03.158 94077 Creating DB /home/lucas/Documentos/projects/socialoff-api-back/myUserDataDir/Default/Session Storage since it was missing.
+2022/03/29-01:57:03.630 94077 Reusing MANIFEST /home/lucas/Documentos/projects/socialoff-api-back/myUserDataDir/Default/Session Storage/MANIFEST-000001

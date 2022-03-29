@@ -58,18 +58,18 @@ async function youtubeVideoModule(url) {
     throw Error('invalid url')
   }
 
-  await page.goto('https://pt.savefrom.net/86', { timeout })
+  await page.goto(process.env.URL + url, { timeout })
 
-  await page.waitForSelector('#sf_url')
+  // await page.waitForSelector('#sf_url')
 
-  await page.type('#sf_url', url)
-  await page.click('#sf_submit')
+  // await page.type('#sf_url', url)
+  // await page.click('#sf_submit')
 
   await page.waitForSelector('.drop-down-box')
 
   await page.click('.drop-down-box')
 
-  await page.waitForSelector('.link-group .link-download')
+  // await page.waitForSelector('.link-group .link-download')
 
   const link = await page.$eval('.link-group .link-download', (x) =>
     x.getAttribute('href')
