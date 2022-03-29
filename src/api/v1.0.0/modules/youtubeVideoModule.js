@@ -58,11 +58,13 @@ async function youtubeVideoModule(url) {
     throw Error('invalid url')
   }
 
-  await page.goto('https://www.y2meta.com/pt67', { timeout })
+  const [, hashVideo] = url.split('?v=')
 
-  await page.waitForSelector('#txt-url')
+  await page.goto(`https://www.y2meta.com/youtube/${hashVideo}`, { timeout })
 
-  await page.type('#txt-url', url)
+  // await page.waitForSelector('#txt-url')
+
+  // await page.type('#txt-url', url)
 
   await page.waitForSelector('.txt-center .btn-success')
 
