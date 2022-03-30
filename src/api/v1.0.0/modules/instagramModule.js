@@ -40,15 +40,14 @@ const myargs = [
 ]
 
 async function instagramModule(url) {
-  if (!url.includes('instagram')) {
-    throw Error('invalid url')
-  }
+ 
 
   const timeout = 30000
 
   const browser = await puppeteer.launch({
     headless: true,
-    args: myargs
+    args: myargs,
+    timeout
   })
 
   const page = await browser.newPage()

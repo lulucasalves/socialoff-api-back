@@ -40,9 +40,7 @@ const myargs = [
 ]
 
 async function tiktokModule(url) {
-  if (!url.includes('tiktok')) {
-    throw Error('invalid url')
-  }
+ 
   const timeout = 30000
 
   const browser = await puppeteer.launch({

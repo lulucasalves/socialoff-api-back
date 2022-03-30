@@ -39,9 +39,7 @@ const myargs = [
 ]
 
 async function linkedinVideoModule(url) {
-  if (!url.includes('linkedin')) {
-    throw Error('invalid url')
-  }
+ 
   const timeout = 30000
 
   const browser = await puppeteer.launch({

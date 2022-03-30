@@ -54,10 +54,6 @@ async function youtubeVideoModule(url) {
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36'
   )
 
-  if (!url.includes('youtube')) {
-    throw Error('invalid url')
-  }
-
   await page.goto(`https://yt1s.io/en20`, {
     timeout
   })

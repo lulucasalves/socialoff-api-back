@@ -39,9 +39,7 @@ const myargs = [
 ]
 
 async function linkedinPostModule(url) {
-  if (!url.includes('linkedin') && !url.includes('media')) {
-    throw Error('invalid url')
-  }
+ 
 
   const timeout = 30000
 

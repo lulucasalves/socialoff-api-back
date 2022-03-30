@@ -40,9 +40,7 @@ const myargs = [
 ]
 
 async function twitterModule(url) {
-  if (!url.includes('twitter')) {
-    throw Error('invalid url')
-  }
+ 
   const timeout = 30000
 
   const browser = await puppeteer.launch({
